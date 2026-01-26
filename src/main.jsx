@@ -7,14 +7,17 @@ import { Toaster } from "@/components/ui/sonner";
 import { store } from "./store";
 import "./index.css";
 import App from "./App.jsx";
+import { AuthProvider } from "@/features/auth/AuthProvider";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <Provider store={store}>
-            <BrowserRouter>
-                <App />
-                <Toaster />
-            </BrowserRouter>
+            <AuthProvider>
+                <BrowserRouter>
+                    <App />
+                    <Toaster />
+                </BrowserRouter>
+            </AuthProvider>
         </Provider>
-    </StrictMode>
+    </StrictMode>,
 );

@@ -1,20 +1,54 @@
+import { Routes, Route } from "react-router-dom";
+import AuthLayout from "@/components/layout/AuthLayout";
+import LoginPage from "@/pages/LoginPage";
+import RegisterPage from "@/pages/RegisterPage";
+import DashboardPage from "@/pages/DashboardPage";
+import ProtectedRoute from "@/routes/ProtectedRoute";
 import { Button } from "@/components/ui/button";
+import MainLayout from "./components/layout/MainLayout";
+import HomePage from "./pages/HomePage";
 
-function App() {
+export default function App() {
     return (
-        <div className="flex h-screen items-center justify-center bg-slate-50">
-            <div className="text-center space-y-4">
-                <h1 className="text-4xl font-bold text-primary">
-                    English Learning App 🚀
-                </h1>
-                <p className="text-muted-foreground">Ready to learn with AI?</p>
-                <div className="flex gap-2 justify-center">
-                    <Button>Get Started</Button>
-                    <Button variant="outline">Learn More</Button>
-                </div>
-            </div>
-        </div>
+        <Routes>
+            {/* --- PUBLIC ROUTES --- */}
+            <Route element={<MainLayout />}>
+                <Route path="/" element={<HomePage />} />
+                {/* Flow Luyện tập Paragraph */}
+                {/* <Route
+                    path="/learn/paragraph/select"
+                    element={<SelectionPage />}
+                /> */}
+                {/* List bài tập (Dùng Query Params như đã chốt: ?level=...&type=...) */}
+                {/* <Route
+                    path="/learn/paragraph/list"
+                    element={<ParagraphListPage />}
+                /> */}
+                {/* Trang Luyện tập (Guest xem được, Submit mới chặn) */}
+                {/* <Route
+                    path="/learn/paragraph/:id/practice"
+                    element={<PracticePage />}
+                /> */}
+                {/* Các trang phụ */}
+                {/* <Route path="/pricing" element={<PricingPage />} />
+                <Route path="/leaderboard" element={<LeaderboardPage />} /> */}
+            </Route>
+
+            {/* --- AUTH ROUTES --- */}
+            <Route element={<AuthLayout />}>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+            </Route>
+
+            {/* --- PRIVATE ROUTES (Dashboard, Profile...) --- */}
+            <Route element={<ProtectedRoute />}>
+                <Route element={<MainLayout />}>
+                    {" "}
+                    {/* Tái sử dụng Header */}
+                    <Route path="/dashboard" element={<DashboardPage />} />
+                    {/* <Route path="/profile" element={<ProfilePage />} /> */}
+                </Route>
+            </Route>
+        </Routes>
     );
 }
-
-export default App;
