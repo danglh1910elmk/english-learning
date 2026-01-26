@@ -5,8 +5,9 @@ import RegisterPage from "@/pages/RegisterPage";
 import DashboardPage from "@/pages/DashboardPage";
 import ProtectedRoute from "@/routes/ProtectedRoute";
 import { Button } from "@/components/ui/button";
-import MainLayout from "./components/layout/MainLayout";
-import HomePage from "./pages/HomePage";
+import MainLayout from "@/components/layout/MainLayout";
+import HomePage from "@/pages/HomePage";
+import SelectionPage from "@/pages/learn/SelectionPage";
 
 export default function App() {
     return (
@@ -14,12 +15,12 @@ export default function App() {
             {/* --- PUBLIC ROUTES --- */}
             <Route element={<MainLayout />}>
                 <Route path="/" element={<HomePage />} />
-                {/* Flow Luyện tập Paragraph */}
-                {/* <Route
+                {/* chọn level + contentType (paragraph) */}
+                <Route
                     path="/learn/paragraph/select"
                     element={<SelectionPage />}
-                /> */}
-                {/* List bài tập (Dùng Query Params như đã chốt: ?level=...&type=...) */}
+                />
+                {/* List bài tập (Dùng Query Params: ?level=...&type=...) */}
                 {/* <Route
                     path="/learn/paragraph/list"
                     element={<ParagraphListPage />}
