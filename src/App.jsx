@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import MainLayout from "@/components/layout/MainLayout";
 import HomePage from "@/pages/HomePage";
 import SelectionPage from "@/pages/learn/SelectionPage";
+import ParagraphListPage from "@/pages/learn/ParagraphListPage";
 
 export default function App() {
     return (
@@ -21,10 +22,10 @@ export default function App() {
                     element={<SelectionPage />}
                 />
                 {/* List bài tập (Dùng Query Params: ?level=...&type=...) */}
-                {/* <Route
+                <Route
                     path="/learn/paragraph/list"
                     element={<ParagraphListPage />}
-                /> */}
+                />
                 {/* Trang Luyện tập (Guest xem được, Submit mới chặn) */}
                 {/* <Route
                     path="/learn/paragraph/:id/practice"
