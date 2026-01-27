@@ -13,6 +13,7 @@ import PracticePage from "@/pages/learn/PracticePage";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
 import SentenceSelectionPage from "@/pages/learn/SentenceSelectionPage";
 import SentencePracticePage from "@/pages/learn/SentencePracticePage";
+import LeaderboardPage from "@/pages/LeaderboardPage";
 
 export default function App() {
     return (
@@ -61,8 +62,8 @@ export default function App() {
                 />
 
                 {/* Các trang phụ */}
-                {/* <Route path="/pricing" element={<PricingPage />} />
-                <Route path="/leaderboard" element={<LeaderboardPage />} /> */}
+                {/* <Route path="/pricing" element={<PricingPage />} /> */}
+                <Route path="/leaderboard" element={<LeaderboardPage />} />
             </Route>
 
             {/* --- AUTH ROUTES --- */}

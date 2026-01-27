@@ -87,6 +87,15 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ["User"], // update credit/points
         }),
+
+        // Leaderboard
+        getLeaderboard: builder.query({
+            query: ({ page = 1, limit = 20 }) => ({
+                url: "/users/leaderboard",
+                params: { page, limit },
+            }),
+            providesTags: ["User"], // Auto refetch nếu user update điểm
+        }),
     }),
 });
 
@@ -98,4 +107,5 @@ export const {
     useGetNextSentenceQuery,
     useLazyGetNextSentenceQuery,
     useCheckSentenceMutation,
+    useGetLeaderboardQuery,
 } = apiSlice;
