@@ -19,6 +19,10 @@ export const apiSlice = createApi({
             return headers;
         },
     }),
+
+    // refetchOnFocus: false, // Tắt tự động fetch lại khi quay lại tab trình duyệt
+    // refetchOnReconnect: true, // Tự động fetch lại khi có mạng trở lại
+
     tagTypes: ["User", "Paragraph", "Sentence"],
     endpoints: (builder) => ({
         // Endpoint lấy danh sách bài học
