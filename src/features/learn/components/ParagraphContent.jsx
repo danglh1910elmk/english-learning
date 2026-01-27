@@ -7,14 +7,14 @@ export function ParagraphContent({ paragraph, currentIndex, history = [] }) {
 
     return (
         <div className="bg-white rounded-xl border p-6 shadow-sm min-h-[300px] text-lg leading-relaxed">
-            {paragraph.segments.map((originalSegment, index) => {
+            {paragraph?.segments?.map((originalSegment, index) => {
                 const isCurrent = index === currentIndex;
 
                 // Logic tìm câu tiếng Anh đã dịch đúng
                 // Tìm trong history xem có bản ghi nào của index này mà passed không?
                 // Lấy cái mới nhất (cuối mảng)
                 const passedRecord = history
-                    .filter(
+                    ?.filter(
                         (h) =>
                             h.segmentIndex === index &&
                             h.aiFeedback?.acceptable,

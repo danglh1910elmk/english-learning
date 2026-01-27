@@ -9,13 +9,20 @@ import MainLayout from "@/components/layout/MainLayout";
 import HomePage from "@/pages/HomePage";
 import SelectionPage from "@/pages/learn/SelectionPage";
 import ParagraphListPage from "@/pages/learn/ParagraphListPage";
-import PracticePage from "./pages/learn/PracticePage";
+import PracticePage from "@/pages/learn/PracticePage";
+import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
 
 export default function App() {
     return (
         <Routes>
             {/* --- PUBLIC ROUTES --- */}
-            <Route element={<MainLayout />}>
+            <Route
+                element={
+                    <ErrorBoundary>
+                        <MainLayout />
+                    </ErrorBoundary>
+                }
+            >
                 <Route path="/" element={<HomePage />} />
                 {/* chọn level + contentType (paragraph) */}
                 <Route
@@ -27,7 +34,7 @@ export default function App() {
                     path="/learn/paragraph/list"
                     element={<ParagraphListPage />}
                 />
-                {/* Trang Luyện tập (Guest xem được, Submit mới chặn) */}
+                {/* Trang Luyện tập dịch thuật */}
                 <Route
                     path="/learn/paragraph/:id/practice"
                     element={<PracticePage />}
@@ -38,16 +45,26 @@ export default function App() {
             </Route>
 
             {/* --- AUTH ROUTES --- */}
-            <Route element={<AuthLayout />}>
+            <Route
+                element={
+                    <ErrorBoundary>
+                        <AuthLayout />
+                    </ErrorBoundary>
+                }
+            >
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
             </Route>
 
             {/* --- PRIVATE ROUTES (Dashboard, Profile...) --- */}
             <Route element={<ProtectedRoute />}>
-                <Route element={<MainLayout />}>
-                    {" "}
-                    {/* Tái sử dụng Header */}
+                <Route
+                    element={
+                        <ErrorBoundary>
+                            <MainLayout />
+                        </ErrorBoundary>
+                    }
+                >
                     <Route path="/dashboard" element={<DashboardPage />} />
                     {/* <Route path="/profile" element={<ProfilePage />} /> */}
                 </Route>

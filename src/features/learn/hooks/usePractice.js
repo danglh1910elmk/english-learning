@@ -21,12 +21,12 @@ export function usePractice() {
     const [checkTranslation, { isLoading: isChecking }] =
         useCheckTranslationMutation();
     const [resetProgress, { isLoading: isResetting }] =
-        useResetProgressMutation(); // Hook reset
+        useResetProgressMutation();
 
     const paragraph = data?.data?.paragraph;
     const progress = data?.data?.progress;
 
-    const currentIndex = progress?.currentIndex || 0;
+    const currentIndex = progress?.currentIndex ?? 0;
     const isCompleted = progress?.status === "completed";
 
     // khi chuyển câu mới -> chỉ reset input, GIỮ NGUYÊN FEEDBACK câu cũ để user đọc

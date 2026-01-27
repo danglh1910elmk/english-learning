@@ -8,16 +8,19 @@ import { store } from "./store";
 import "./index.css";
 import App from "./App.jsx";
 import { AuthProvider } from "@/features/auth/AuthProvider";
+import { ErrorBoundary } from "./components/shared/ErrorBoundary";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <Provider store={store}>
-            <AuthProvider>
-                <BrowserRouter>
-                    <App />
-                    <Toaster />
-                </BrowserRouter>
-            </AuthProvider>
-        </Provider>
+        <ErrorBoundary>
+            <Provider store={store}>
+                <AuthProvider>
+                    <BrowserRouter>
+                        <App />
+                        <Toaster />
+                    </BrowserRouter>
+                </AuthProvider>
+            </Provider>
+        </ErrorBoundary>
     </StrictMode>,
 );
