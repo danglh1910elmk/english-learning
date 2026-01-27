@@ -1,48 +1,68 @@
-// src/features/auth/AuthProvider.jsx
-
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"; // Import useSelector
 import { supabase } from "@/lib/supabase";
-import { setCredentials, logout } from "./authSlice";
+import { setCredentials, logout, selectCurrentUser } from "./authSlice"; // Import selector
 import { useGetMeQuery } from "./authApiSlice";
 
 export function AuthProvider({ children }) {
     const dispatch = useDispatch();
+    const currentUser = useSelector(selectCurrentUser); // Lấy user hiện tại trong store
 
-    // Gọi hook này để fetch user profile từ Backend khi có token
-    // skip: true để không gọi khi chưa có session (sẽ handle bên dưới)
-    const { data: userProfile, refetch } = useGetMeQuery(undefined, {
+    const {
+        data: userProfile,
+        refetch,
+        isSuccess,
+    } = useGetMeQuery(undefined, {
         skip: !supabase.auth.getSession().then(({ data }) => !!data.session),
     });
 
     useEffect(() => {
-        // 1. Check session hiện tại khi F5
+        // 1. Initial Check
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (session) {
-                dispatch(setCredentials({ session, user: null })); // Tạm thời null user, đợi API
-                refetch(); // Gọi API getMe
+                // CHỈ set user null nếu trong store chưa có gì
+                // Nếu đã có currentUser rồi (do login từ trước), đừng ghi đè null
+                dispatch(
+                    setCredentials({
+                        session,
+                        user: currentUser || null,
+                    }),
+                );
+                refetch();
             }
         });
 
-        // 2. Lắng nghe thay đổi auth (Login, Logout, Auto Refresh Token)
+        // 2. Auth Listener
         const {
             data: { subscription },
-        } = supabase.auth.onAuthStateChange((_event, session) => {
+        } = supabase.auth.onAuthStateChange((event, session) => {
             if (session) {
-                dispatch(setCredentials({ session, user: null }));
-                refetch();
+                // Tương tự, giữ lại currentUser để UI không bị nháy
+                // Chỉ update session token mới nhất
+                dispatch(
+                    setCredentials({
+                        session,
+                        user: currentUser || null,
+                    }),
+                );
+
+                // Chỉ refetch khi cần thiết (ví dụ token thay đổi)
+                // Nhưng RTK Query thường tự lo cái này nếu tag invalid
+                if (event === "TOKEN_REFRESHED" || event === "SIGNED_IN") {
+                    refetch();
+                }
             } else {
                 dispatch(logout());
             }
         });
 
         return () => subscription.unsubscribe();
-    }, [dispatch, refetch]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch, refetch]); // Bỏ currentUser ra khỏi dependency để tránh loop
 
-    // Khi có data từ Backend về -> Update vào Redux
+    // 3. Update User Data from API
     useEffect(() => {
-        if (userProfile?.data?.user) {
-            // Lấy session hiện tại để update full
+        if (isSuccess && userProfile?.data?.user) {
             supabase.auth.getSession().then(({ data: { session } }) => {
                 if (session) {
                     dispatch(
@@ -54,7 +74,7 @@ export function AuthProvider({ children }) {
                 }
             });
         }
-    }, [userProfile, dispatch]);
+    }, [userProfile, isSuccess, dispatch]);
 
     return children;
 }

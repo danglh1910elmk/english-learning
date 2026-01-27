@@ -51,6 +51,7 @@ export default function SentencePracticePage() {
     // Load Initial
     useEffect(() => {
         handleNext();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // 1. Fetch Next Sentence
@@ -126,6 +127,7 @@ export default function SentencePracticePage() {
                         <ArrowLeft className="w-4 h-4 mr-2" /> Thoát
                     </Button>
 
+                    {/* Stats header */}
                     {/* Stats chỉ hiện khi Login */}
                     {isAuthenticated && user && (
                         <div className="flex items-center gap-4 text-sm font-medium">
