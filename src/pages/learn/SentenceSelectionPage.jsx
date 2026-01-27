@@ -62,32 +62,7 @@ export default function SentenceSelectionPage() {
                     </div>
                 </section>
 
-                {/* SECTION 2: SETTINGS (Học lại câu cũ) */}
-                <section className="bg-slate-50 p-4 rounded-xl border flex items-center justify-between">
-                    <div className="flex flex-col">
-                        <span className="font-medium text-slate-900">
-                            Chế độ ôn tập thông minh
-                        </span>
-                        <span className="text-sm text-muted-foreground">
-                            Tự động bỏ qua các câu bạn đã làm đúng trước đây
-                        </span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Switch
-                            id="exclude-mode"
-                            checked={excludeLearned}
-                            onCheckedChange={setExcludeLearned}
-                        />
-                        <Label
-                            htmlFor="exclude-mode"
-                            className="cursor-pointer"
-                        >
-                            {excludeLearned ? "Bật" : "Tắt"}
-                        </Label>
-                    </div>
-                </section>
-
-                {/* SECTION 3: CATEGORY */}
+                {/* SECTION 2: CATEGORY */}
                 <section>
                     <h2 className="text-xl font-semibold mb-4">
                         2. Chọn chủ đề ({SENTENCE_CATEGORIES.length})
@@ -120,6 +95,31 @@ export default function SentenceSelectionPage() {
                                 </div>
                             );
                         })}
+                    </div>
+                </section>
+
+                {/* SECTION 3: SETTINGS (Học lại câu cũ) */}
+                <section className="bg-slate-50 p-4 rounded-xl border flex items-center justify-between">
+                    <div className="flex flex-col">
+                        <span className="font-medium text-slate-900">
+                            Chế độ ôn tập thông minh
+                        </span>
+                        <span className="text-sm text-muted-foreground">
+                            Tự động bỏ qua các câu bạn đã làm đúng trước đây
+                        </span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Switch
+                            id="exclude-mode"
+                            checked={excludeLearned}
+                            onCheckedChange={setExcludeLearned}
+                        />
+                        <Label
+                            htmlFor="exclude-mode"
+                            className="cursor-pointer"
+                        >
+                            {excludeLearned ? "Bật" : "Tắt"}
+                        </Label>
                     </div>
                 </section>
 
