@@ -64,6 +64,29 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: (result, error, id) => [{ type: "Paragraph", id }],
         }),
+
+        // sentence
+        getNextSentence: builder.query({
+            // excludeLearned: true/false
+            query: ({ level, category, excludeLearned }) => ({
+                url: "/learn/sentences/next",
+                params: {
+                    level: level === "all" ? undefined : level,
+                    category: category === "all" ? undefined : category,
+                    excludeLearned,
+                },
+            }),
+            keepUnusedDataFor: 0,
+        }),
+
+        checkSentence: builder.mutation({
+            query: (data) => ({
+                url: "/learn/sentences/check",
+                method: "POST",
+                body: data,
+            }),
+            invalidatesTags: ["User"], // update credit/points
+        }),
     }),
 });
 
@@ -72,4 +95,7 @@ export const {
     useGetParagraphDetailQuery,
     useCheckTranslationMutation,
     useResetProgressMutation,
+    useGetNextSentenceQuery,
+    useLazyGetNextSentenceQuery,
+    useCheckSentenceMutation,
 } = apiSlice;

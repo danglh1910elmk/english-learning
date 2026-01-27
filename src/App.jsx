@@ -11,6 +11,8 @@ import SelectionPage from "@/pages/learn/SelectionPage";
 import ParagraphListPage from "@/pages/learn/ParagraphListPage";
 import PracticePage from "@/pages/learn/PracticePage";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
+import SentenceSelectionPage from "@/pages/learn/SentenceSelectionPage";
+import SentencePracticePage from "@/pages/learn/SentencePracticePage";
 
 export default function App() {
     return (
@@ -23,22 +25,41 @@ export default function App() {
                     </ErrorBoundary>
                 }
             >
+                {/* Home */}
                 <Route path="/" element={<HomePage />} />
+
+                {/* PARAGRAPH */}
                 {/* chọn level + contentType (paragraph) */}
                 <Route
                     path="/learn/paragraph/select"
                     element={<SelectionPage />}
                 />
-                {/* List bài tập (Dùng Query Params: ?level=...&type=...) */}
+
+                {/* List bài tập paragraph (dùng Query Params: ?level=...&type=...) */}
                 <Route
                     path="/learn/paragraph/list"
                     element={<ParagraphListPage />}
                 />
-                {/* Trang Luyện tập dịch thuật */}
+
+                {/* Trang Luyện tập dịch Paragraph */}
                 <Route
                     path="/learn/paragraph/:id/practice"
                     element={<PracticePage />}
                 />
+
+                {/* SENTENCE */}
+                {/* trang chọn level + category (sentence) */}
+                <Route
+                    path="/learn/sentence/select"
+                    element={<SentenceSelectionPage />}
+                />
+
+                {/* trang luyện dịch Sentence */}
+                <Route
+                    path="/learn/sentence/practice"
+                    element={<SentencePracticePage />}
+                />
+
                 {/* Các trang phụ */}
                 {/* <Route path="/pricing" element={<PricingPage />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} /> */}

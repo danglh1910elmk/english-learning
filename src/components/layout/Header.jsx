@@ -44,16 +44,19 @@ export function Header() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="start">
                             <DropdownMenuItem
+                                className={"text-center"}
                                 onClick={() =>
                                     navigate("/learn/paragraph/select")
                                 }
                             >
-                                Đoạn văn (Paragraph)
+                                Đoạn văn
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                                onClick={() => navigate("/learn/sentence")}
+                                onClick={() =>
+                                    navigate("/learn/sentence/select")
+                                }
                             >
-                                Câu đơn (Sentence)
+                                Câu đơn
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

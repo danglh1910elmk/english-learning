@@ -1,7 +1,8 @@
 // src/features/learn/hooks/usePractice.js
 
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import {
     useGetParagraphDetailQuery,
     useCheckTranslationMutation,
@@ -11,7 +12,7 @@ import { toast } from "sonner";
 
 export function usePractice() {
     const { id } = useParams();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const [studentInput, setStudentInput] = useState("");
     const [feedback, setFeedback] = useState(null);
@@ -58,8 +59,8 @@ export function usePractice() {
             }
         } catch (err) {
             if (err.status === 402)
-                toast.error("Hết Credit! Vui lòng nạp thêm.");
-            else if (err.status === 401) toast.error("Vui lòng đăng nhập.");
+                toast.error("Bạn đã hết Credit! Vui lòng nạp thêm để tiếp tục");
+            else if (err.status === 401) toast.error("Vui lòng đăng nhập!");
             else toast.error("Có lỗi xảy ra");
         }
     };
