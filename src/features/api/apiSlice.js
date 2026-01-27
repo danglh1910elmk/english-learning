@@ -19,7 +19,7 @@ export const apiSlice = createApi({
             return headers;
         },
     }),
-    tagTypes: ["User", "Paragraph", "Sentence"], // Để quản lý cache invalidation
+    tagTypes: ["User", "Paragraph", "Sentence"],
     endpoints: (builder) => ({
         // Endpoint lấy danh sách bài học
         getParagraphs: builder.query({
@@ -38,7 +38,38 @@ export const apiSlice = createApi({
                       ]
                     : [{ type: "Paragraph", id: "LIST" }],
         }),
+
+        getParagraphDetail: builder.query({
+            query: (id) => `/learn/paragraphs/${id}`, // API trả về { paragraph, progress }
+            providesTags: (result, error, id) => [{ type: "Paragraph", id }],
+        }),
+
+        checkTranslation: builder.mutation({
+            query: (data) => ({
+                url: "/learn/paragraphs/check",
+                method: "POST",
+                body: data, // { paragraphId, segmentIndex, studentSentence }
+            }),
+            // Sau khi check xong, cần invalidate để fetch lại User info (trừ credit) và Progress mới
+            invalidatesTags: (result, error, { paragraphId }) => [
+                { type: "Paragraph", id: paragraphId },
+                "User",
+            ],
+        }),
+
+        resetProgress: builder.mutation({
+            query: (id) => ({
+                url: `/learn/paragraphs/${id}/reset`,
+                method: "POST",
+            }),
+            invalidatesTags: (result, error, id) => [{ type: "Paragraph", id }],
+        }),
     }),
 });
 
-export const { useGetParagraphsQuery } = apiSlice;
+export const {
+    useGetParagraphsQuery,
+    useGetParagraphDetailQuery,
+    useCheckTranslationMutation,
+    useResetProgressMutation,
+} = apiSlice;

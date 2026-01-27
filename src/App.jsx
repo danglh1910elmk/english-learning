@@ -9,6 +9,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import HomePage from "@/pages/HomePage";
 import SelectionPage from "@/pages/learn/SelectionPage";
 import ParagraphListPage from "@/pages/learn/ParagraphListPage";
+import PracticePage from "./pages/learn/PracticePage";
 
 export default function App() {
     return (
@@ -27,10 +28,10 @@ export default function App() {
                     element={<ParagraphListPage />}
                 />
                 {/* Trang Luyện tập (Guest xem được, Submit mới chặn) */}
-                {/* <Route
+                <Route
                     path="/learn/paragraph/:id/practice"
                     element={<PracticePage />}
-                /> */}
+                />
                 {/* Các trang phụ */}
                 {/* <Route path="/pricing" element={<PricingPage />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} /> */}

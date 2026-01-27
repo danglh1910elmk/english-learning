@@ -148,12 +148,12 @@ export default function ParagraphListPage() {
                                         <BarChart className="w-3 h-3" />{" "}
                                         {item.segmentCount} câu
                                     </div>
-                                    {item.userScore > 0 && (
+                                    {/* {item.userScore > 0 && (
                                         <div className="flex items-center gap-1 text-primary">
                                             <Clock className="w-3 h-3" /> Điểm:{" "}
                                             {item.userScore}
                                         </div>
-                                    )}
+                                    )} */}
                                 </div>
                             </CardContent>
 
