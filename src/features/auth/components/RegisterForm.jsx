@@ -39,23 +39,20 @@ export function RegisterForm() {
                 email: values.email,
                 password: values.password,
                 options: {
-                    // Quan trọng: Truyền meta data để Trigger Postgres lấy được
+                    // Truyền meta data để Trigger Postgres lấy được
                     data: {
                         full_name: values.fullName,
-                        avatar_url: "", // Để trống hoặc random avatar
+                        avatar_url: "",
                     },
                 },
             });
 
             if (error) throw error;
 
-            toast.success("Registration successful! You can now log in.");
-            // Tùy setting Supabase của bạn có bắt confirm email không
-            // Nếu tắt confirm email -> Nó tự login luôn -> Redirect Dashboard
-            // Nếu bật confirm -> Báo check mail
+            toast.success("Đăng ký thành công!");
             navigate("/login");
         } catch (error) {
-            toast.error(error.message || "Registration failed");
+            toast.error(error.message || "Đăng ký không thành công!");
         }
     }
 
@@ -68,9 +65,9 @@ export function RegisterForm() {
                     name="fullName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Full Name</FormLabel>
+                            <FormLabel>Tên Đầy Đủ</FormLabel>
                             <FormControl>
-                                <Input placeholder="John Doe" {...field} />
+                                <Input placeholder="••••••••" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -86,7 +83,7 @@ export function RegisterForm() {
                             <FormLabel>Email</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="name@example.com"
+                                    placeholder="example@gmail.com"
                                     {...field}
                                 />
                             </FormControl>
@@ -119,15 +116,13 @@ export function RegisterForm() {
                     className="w-full"
                     disabled={form.formState.isSubmitting}
                 >
-                    {form.formState.isSubmitting
-                        ? "Creating account..."
-                        : "Sign Up"}
+                    {form.formState.isSubmitting ? "Đang tạo..." : "Đăng ký"}
                 </Button>
 
                 <div className="text-center text-sm">
-                    Already have an account?{" "}
+                    Đã có tài khoản?{" "}
                     <Link to="/login" className="underline text-primary">
-                        Sign in
+                        Đăng nhập
                     </Link>
                 </div>
             </form>

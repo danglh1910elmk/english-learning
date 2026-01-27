@@ -11,7 +11,6 @@ export default function ProtectedRoute() {
     const location = useLocation();
     const [isChecking, setIsChecking] = useState(true);
 
-    // Fix lỗi flash: Chờ check session lần đầu tiên xong mới quyết định redirect
     useEffect(() => {
         supabase.auth.getSession().then(() => {
             setIsChecking(false);
@@ -27,7 +26,7 @@ export default function ProtectedRoute() {
     }
 
     if (!isAuthenticated) {
-        // Redirect về login, nhưng nhớ lưu lại trang họ đang muốn vào (state={{ from: location }})
+        // redirect về login & lưu lại trang đang muốn vào (state={{ from: location }})
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 

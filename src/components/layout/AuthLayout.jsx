@@ -8,9 +8,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function AuthLayout() {
     const isAuthenticated = useSelector(selectIsAuthenticated);
 
-    // Nếu đã login rồi thì không cho vào trang login/register nữa -> đá về dashboard
+    // Nếu đã login rồi thì không cho vào trang login/register nữa -> đá về Home
     if (isAuthenticated) {
-        return <Navigate to="/dashboard" replace />;
+        return <Navigate to="/" replace />;
     }
 
     return (
@@ -21,11 +21,10 @@ export default function AuthLayout() {
                         English Master 🎓
                     </CardTitle>
                     <p className="text-sm text-muted-foreground">
-                        Sign in to start learning
+                        Đăng nhập để bắt đầu
                     </p>
                 </CardHeader>
                 <CardContent>
-                    {/* Nơi render LoginForm hoặc RegisterForm */}
                     <Outlet />
                 </CardContent>
             </Card>

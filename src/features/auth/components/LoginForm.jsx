@@ -15,7 +15,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // Schema validate (Copy rule từ Backend sang nếu muốn đồng bộ)
 const loginSchema = Joi.object({
@@ -41,11 +41,11 @@ export function LoginForm() {
 
             if (error) throw error;
 
-            // 2. Thành công -> Redirect (Redux sẽ tự update nhờ AuthProvider ở Phần 4)
-            toast.success("Welcome back!");
-            navigate("/dashboard");
+            // 2. thành công -> redirect
+            toast.success("Đăng nhập thành công!");
+            navigate("/");
         } catch (error) {
-            toast.error(error.message || "Login failed");
+            toast.error(error.message || "Đăng nhập không thành công!");
         }
     }
 
@@ -60,7 +60,7 @@ export function LoginForm() {
                             <FormLabel>Email</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="name@example.com"
+                                    placeholder="example@gmail.com"
                                     {...field}
                                 />
                             </FormControl>
@@ -90,8 +90,17 @@ export function LoginForm() {
                     className="w-full"
                     disabled={form.formState.isSubmitting}
                 >
-                    {form.formState.isSubmitting ? "Signing in..." : "Sign In"}
+                    {form.formState.isSubmitting
+                        ? "Đang đăng nhập..."
+                        : "Đăng nhập"}
                 </Button>
+
+                <div className="text-center text-sm">
+                    Chưa có tài khoản?{" "}
+                    <Link to="/register" className="underline text-primary">
+                        Đăng ký
+                    </Link>
+                </div>
             </form>
         </Form>
     );
