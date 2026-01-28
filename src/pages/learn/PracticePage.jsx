@@ -1,14 +1,19 @@
 // src/pages/learn/PracticePage.jsx
 
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { usePractice } from "@/features/learn/hooks/usePractice";
 import { ParagraphContent } from "@/features/learn/components/ParagraphContent";
 import { AIFeedback } from "@/features/learn/components/AIFeedback";
+import {
+    selectCurrentUser,
+    selectIsAuthenticated,
+} from "@/features/auth/authSlice";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
-import { Loader2, ArrowLeft, RotateCcw } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Loader2, ArrowLeft, RotateCcw, Gem, Trophy } from "lucide-react";
 
 export default function PracticePage() {
     // đổi tab title
@@ -17,6 +22,11 @@ export default function PracticePage() {
     }, []);
 
     const navigate = useNavigate();
+
+    // Auth State
+    const isAuthenticated = useSelector(selectIsAuthenticated);
+    const user = useSelector(selectCurrentUser);
+
     const {
         paragraph,
         progress,
@@ -51,6 +61,7 @@ export default function PracticePage() {
             <header className="bg-white border-b sticky top-0 z-10 px-4">
                 <div className="container h-16 flex items-center justify-between">
                     <div className="flex items-center gap-4">
+                        {/* back button */}
                         <Button
                             variant="ghost"
                             className={"cursor-pointer"}
@@ -59,6 +70,7 @@ export default function PracticePage() {
                         >
                             <ArrowLeft className="w-5 h-5" />
                         </Button>
+                        {/* Title && progress bar */}
                         <div>
                             <h1 className="font-bold text-lg line-clamp-1">
                                 {paragraph.title}
@@ -74,11 +86,22 @@ export default function PracticePage() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-3">
+                    {/* remaining credits & points */}
+                    {/* <div className="flex items-center gap-3">
                         <div className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
                             Score: {progress?.totalScore || 0}
                         </div>
-                    </div>
+                    </div> */}
+                    {isAuthenticated && user && (
+                        <div className="flex items-center gap-4 text-sm font-medium">
+                            <div className="flex items-center gap-1.5 text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+                                <Gem className="w-4 h-4" /> {user.credits}
+                            </div>
+                            <div className="flex items-center gap-1.5 text-yellow-600 bg-yellow-50 px-3 py-1 rounded-full">
+                                <Trophy className="w-4 h-4" /> {user.points}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </header>
 
