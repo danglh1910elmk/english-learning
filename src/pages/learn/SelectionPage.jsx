@@ -1,12 +1,12 @@
 // src/pages/learn/SelectionPage.jsx
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LEVELS, CONTENT_TYPES } from "@/config/learnOptions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils"; // Hàm classnames của shadcn
+import { cn } from "@/lib/utils";
 
 export default function SelectionPage() {
     const navigate = useNavigate();
@@ -15,15 +15,20 @@ export default function SelectionPage() {
 
     const handleContinue = () => {
         if (level && type) {
-            // Chuyển hướng kèm Query Params
+            // chuyển hướng kèm query params
             navigate(
                 `/learn/paragraph/list?level=${level}&contentType=${type}`,
             );
         }
     };
 
+    // đổi tab title
+    useEffect(() => {
+        document.title = "Luyện dịch đoạn văn | EnglishMaster";
+    }, []);
+
     return (
-        <div className="container max-w-4xl py-12 px-4 md:py-20">
+        <div className="container max-w-4xl py-12 px-4 md:py-20 mx-auto">
             <div className="text-center mb-12 space-y-2">
                 <h1 className="text-2xl font-bold tracking-tight md:text-4xl">
                     Chọn cấp độ và loại nội dung muốn luyện tập
@@ -49,7 +54,7 @@ export default function SelectionPage() {
                                 key={item.id}
                                 onClick={() => setLevel(item.id)}
                                 className={cn(
-                                    "relative cursor-pointer rounded-xl border-2 p-6 transition-all hover:shadow-md",
+                                    "relative cursor-pointer rounded-xl border-2 p-6 transition-all hover:shadow-md text-center",
                                     level === item.id
                                         ? "border-primary bg-primary/5 ring-2 ring-primary/20"
                                         : "border-border bg-card hover:border-primary/50",
@@ -126,7 +131,7 @@ export default function SelectionPage() {
                         size="lg"
                         onClick={handleContinue}
                         disabled={!level || !type}
-                        className="px-8 text-lg"
+                        className="px-8 text-lg cursor-pointer"
                     >
                         Tiếp tục <ChevronRight className="ml-2 w-5 h-5" />
                     </Button>

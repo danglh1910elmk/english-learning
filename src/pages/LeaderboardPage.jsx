@@ -24,7 +24,7 @@ export default function LeaderboardPage() {
     const [page, setPage] = useState(1);
     const currentUser = useSelector(selectCurrentUser);
 
-    // Thay đổi title tab
+    // đổi tab title
     useEffect(() => {
         document.title = "Bảng Xếp Hạng | EnglishMaster";
     }, []);
@@ -55,7 +55,7 @@ export default function LeaderboardPage() {
     };
 
     return (
-        <div className="container max-w-4xl py-10 min-h-screen">
+        <div className="container max-w-4xl py-10 min-h-screen mx-auto">
             {/* Header */}
             <div className="text-center mb-10 space-y-2">
                 <h1 className="text-3xl md:text-4xl font-bold bg-linear-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent leading-loose block">
@@ -209,6 +209,7 @@ export default function LeaderboardPage() {
                         size="sm"
                         onClick={() => setPage((p) => p - 1)}
                         disabled={page === 1}
+                        className={"cursor-pointer"}
                     >
                         <ChevronLeft className="h-4 w-4" /> Trước
                     </Button>
@@ -220,6 +221,7 @@ export default function LeaderboardPage() {
                         size="sm"
                         onClick={() => setPage((p) => p + 1)}
                         disabled={page === pagination.totalPages}
+                        className={"cursor-pointer"}
                     >
                         Sau <ChevronRight className="h-4 w-4" />
                     </Button>

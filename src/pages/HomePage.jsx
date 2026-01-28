@@ -1,17 +1,22 @@
 // src/pages/HomePage.jsx
 
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, BrainCircuit, Gamepad2, Zap } from "lucide-react";
 
 export default function HomePage() {
+    // đổi tab title
+    useEffect(() => {
+        document.title = "Học tiếng Anh thông qua dịch thuật | EnglishMaster";
+    }, []);
+
     return (
         <div className="flex flex-col">
             {/* 1. HERO SECTION */}
-            <section className="relative py-20 lg:py-32 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+            <section className="relative py-20 lg:py-32 bg-linear-to-b from-slate-50 to-white overflow-hidden flex justify-center">
                 <div className="container px-4 md:px-6 relative z-10">
                     <div className="flex flex-col items-center text-center space-y-8 max-w-3xl mx-auto">
-                        {/* Badge nhỏ xinh */}
                         <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/10 text-primary hover:bg-primary/20">
                             New: AI-Powered Feedback 🤖
                         </div>
@@ -25,7 +30,7 @@ export default function HomePage() {
                         {/* Subtext */}
                         <p className="text-xl text-muted-foreground max-w-[600px]">
                             Luyện dịch Việt - Anh thông minh. Nhận phản hồi sửa
-                            lỗi ngữ pháp, từ vựng tức thì từ AI giáo viên.
+                            lỗi ngữ pháp, từ vựng tức thì từ AI
                         </p>
 
                         {/* CTA Buttons */}
@@ -52,12 +57,12 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                {/* Background Decoration (Optional) */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />
+                {/* Background Decoration */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-250 h-125 bg-primary/5 rounded-full blur-3xl -z-10" />
             </section>
 
             {/* 2. FEATURES SECTION */}
-            <section className="py-20 bg-white">
+            <section className="py-20 bg-white flex justify-center">
                 <div className="container px-4 md:px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -65,7 +70,7 @@ export default function HomePage() {
                         </h2>
                         <p className="mt-4 text-muted-foreground text-lg">
                             Phương pháp học tập hiện đại giúp bạn tiến bộ mỗi
-                            ngày.
+                            ngày
                         </p>
                     </div>
 
@@ -75,29 +80,29 @@ export default function HomePage() {
                                 <BrainCircuit className="h-10 w-10 text-blue-500" />
                             }
                             title="Học Thông Minh"
-                            desc="AI phân tích lỗi sai của bạn chi tiết từng câu chữ, giải thích ngữ pháp dễ hiểu."
+                            desc="AI phân tích lỗi sai của bạn chi tiết từng câu chữ, giải thích ngữ pháp dễ hiểu"
                         />
                         <FeatureCard
                             icon={
                                 <Gamepad2 className="h-10 w-10 text-purple-500" />
                             }
                             title="Trải Nghiệm Game Hóa"
-                            desc="Tích điểm, giữ chuỗi Streak và leo bảng xếp hạng để duy trì động lực mỗi ngày."
+                            desc="Tích điểm và leo bảng xếp hạng để duy trì động lực mỗi ngày"
                         />
                         <FeatureCard
                             icon={<Zap className="h-10 w-10 text-yellow-500" />}
                             title="Phản Hồi Tức Thì"
-                            desc="Không cần chờ giáo viên chấm bài. Bạn nhận kết quả và sửa lỗi ngay lập tức."
+                            desc="Nhận phân tích và sửa lỗi ngay lập tức từ AI"
                         />
                     </div>
                 </div>
             </section>
 
             {/* 3. FINAL CTA */}
-            <section className="py-20 bg-slate-50 border-t">
+            <section className="py-20 bg-slate-50 border-t flex justify-center">
                 <div className="container px-4 text-center">
                     <h2 className="text-3xl font-bold mb-6">
-                        Sẵn sàng nâng trình tiếng Anh?
+                        Bạn đã sẵn sàng nâng trình tiếng Anh?
                     </h2>
                     <Button
                         size="lg"
@@ -114,7 +119,6 @@ export default function HomePage() {
     );
 }
 
-// Component con nội bộ cho gọn
 function FeatureCard({ icon, title, desc }) {
     return (
         <div className="flex flex-col items-center text-center p-6 rounded-2xl border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">

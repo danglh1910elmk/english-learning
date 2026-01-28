@@ -45,6 +45,11 @@ export default function ParagraphListPage() {
         topic: topic !== "all" ? topic : undefined,
     });
 
+    // đổi tab title
+    useEffect(() => {
+        document.title = "Luyện dịch đoạn văn | EnglishMaster";
+    }, []);
+
     // Reset page khi filter đổi
     useEffect(() => {
         setPage(1);
@@ -66,7 +71,7 @@ export default function ParagraphListPage() {
     };
 
     return (
-        <div className="container py-8 max-w-6xl">
+        <div className="container px-4 py-8 max-w-6xl mx-auto">
             {/* HEADER & FILTER */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                 <div>
@@ -81,19 +86,23 @@ export default function ParagraphListPage() {
                 <div className="flex gap-3 w-full md:w-auto">
                     {/* Topic Filter */}
                     <Select value={topic} onValueChange={setTopic}>
-                        <SelectTrigger className="w-[180px]">
+                        <SelectTrigger className="w-45 cursor-pointer">
                             <SelectValue placeholder="Chủ đề" />
                         </SelectTrigger>
                         <SelectContent>
                             {TOPICS.map((t) => (
-                                <SelectItem key={t.value} value={t.value}>
+                                <SelectItem
+                                    key={t.value}
+                                    value={t.value}
+                                    className={"cursor-pointer"}
+                                >
                                     {t.label}
                                 </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
 
-                    {/* Status Filter (Giả lập UI) */}
+                    {/* Status Filter */}
                     {/* <Select value={status} onValueChange={setStatus}>
                         <SelectTrigger className="w-[160px]">
                             <SelectValue placeholder="Trạng thái" />
@@ -159,7 +168,7 @@ export default function ParagraphListPage() {
 
                             <CardFooter className="pt-0">
                                 <Button
-                                    className="w-full"
+                                    className="w-full cursor-pointer"
                                     onClick={() =>
                                         navigate(
                                             `/learn/paragraph/${item.id}/practice`,
@@ -182,9 +191,10 @@ export default function ParagraphListPage() {
                     </p>
                     <Button
                         variant="link"
+                        className={"cursor-pointer"}
                         onClick={() => {
                             setTopic("all");
-                            setStatus("all");
+                            // setStatus("all");
                         }}
                     >
                         Xóa bộ lọc
@@ -197,20 +207,22 @@ export default function ParagraphListPage() {
                 <div className="flex justify-center gap-2 mt-8">
                     <Button
                         variant="outline"
+                        className={"cursor-pointer"}
                         disabled={page === 1}
                         onClick={() => setPage((p) => p - 1)}
                     >
-                        Previous
+                        Trước
                     </Button>
                     <span className="flex items-center px-4 text-sm font-medium">
-                        Page {page} of {pagination.totalPages}
+                        Trang {page} / {pagination.totalPages}
                     </span>
                     <Button
                         variant="outline"
+                        className={"cursor-pointer"}
                         disabled={page === pagination.totalPages}
                         onClick={() => setPage((p) => p + 1)}
                     >
-                        Next
+                        Sau
                     </Button>
                 </div>
             )}

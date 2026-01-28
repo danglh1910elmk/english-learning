@@ -13,7 +13,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, User, LogOut, Trophy, CreditCard } from "lucide-react"; // Icons
+import { Menu, User, LogOut, Trophy, CreditCard } from "lucide-react";
 import { UserDropdown } from "@/components/shared/UserDropdown";
 
 export function Header() {
@@ -22,29 +22,32 @@ export function Header() {
     const navigate = useNavigate();
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-16 items-center justify-between">
+        <header className="sticky flex justify-center top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+            <div className="container flex h-16 px-6 items-center justify-start">
                 {/* LOGO */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 ">
                     <Link to="/" className="flex items-center space-x-2">
-                        <span className="text-xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+                        <span className="text-xl font-bold bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
                             EnglishMaster
                         </span>
                     </Link>
                 </div>
 
                 {/* DESKTOP NAV */}
-                <nav className="hidden md:flex items-center gap-6">
+                <nav className="hidden md:flex items-center gap-6 ml-auto">
                     {/* Dropdown Luyện Tập */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="font-medium">
+                            <Button
+                                variant="ghost"
+                                className="font-medium cursor-pointer px-1"
+                            >
                                 Luyện tập
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="start">
                             <DropdownMenuItem
-                                className={"text-center"}
+                                className={"text-center cursor-pointer"}
                                 onClick={() =>
                                     navigate("/learn/paragraph/select")
                                 }
@@ -52,6 +55,7 @@ export function Header() {
                                 Đoạn văn
                             </DropdownMenuItem>
                             <DropdownMenuItem
+                                className={"text-center cursor-pointer"}
                                 onClick={() =>
                                     navigate("/learn/sentence/select")
                                 }
@@ -62,7 +66,7 @@ export function Header() {
                     </DropdownMenu>
 
                     <Link
-                        to="/pricing"
+                        to="/"
                         className="text-sm font-medium hover:text-primary transition-colors"
                     >
                         Nạp Credit
@@ -76,7 +80,7 @@ export function Header() {
                 </nav>
 
                 {/* AUTH ACTIONS */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 ml-auto md:ml-10">
                     {isAuthenticated ? (
                         <UserDropdown user={user} />
                     ) : (

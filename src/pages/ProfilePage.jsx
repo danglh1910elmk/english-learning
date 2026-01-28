@@ -1,14 +1,21 @@
 // src/pages/ProfilePage.jsx
 
 import { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import { supabase } from "@/lib/supabase";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
-import { supabase } from "@/lib/supabase";
-import { useSelector } from "react-redux";
 import { selectCurrentUser } from "@/features/auth/authSlice";
 import { useUpdateProfileMutation } from "@/features/auth/authApiSlice";
 import { useGetUserRankQuery } from "@/features/api/apiSlice";
+import { logout } from "@/features/auth/authSlice";
+import {
+    useUploadAvatarMutation,
+    useDeleteAccountMutation,
+} from "@/features/auth/authApiSlice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -31,14 +38,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Loader2, Trophy, Gem, Calendar, Flame } from "lucide-react";
-
-import {
-    useUploadAvatarMutation,
-    useDeleteAccountMutation,
-} from "@/features/auth/authApiSlice";
-import { logout } from "@/features/auth/authSlice";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Camera, Trash2 } from "lucide-react";
 import {
     AlertDialog,
@@ -51,11 +50,10 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
 
-// Schema Validate
+// schema
 const profileSchema = Joi.object({
     fullName: Joi.string().empty("").min(2).label("Full Name").optional(),
     bio: Joi.string().allow("").max(200).label("Bio"),
@@ -172,7 +170,7 @@ export default function ProfilePage() {
     if (!user) return null;
 
     return (
-        <div className="container max-w-2xl py-10 space-y-8">
+        <div className="container max-w-2xl py-10 space-y-8 mx-auto">
             {/* 1. HEADER & AVATAR */}
             <div className="flex flex-col items-center text-center space-y-4">
                 <div className="relative group">

@@ -1,6 +1,6 @@
 // src/pages/learn/SentenceSelectionPage.jsx
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SENTENCE_LEVELS, SENTENCE_CATEGORIES } from "@/config/sentenceOptions";
 import { Button } from "@/components/ui/button";
@@ -27,8 +27,13 @@ export default function SentenceSelectionPage() {
         navigate(`/learn/sentence/practice?${params}`);
     };
 
+    // đổi tab title
+    useEffect(() => {
+        document.title = "Luyện dịch câu | EnglishMaster";
+    }, []);
+
     return (
-        <div className="container max-w-5xl py-12 px-4">
+        <div className="container max-w-5xl py-12 px-4 mx-auto">
             <div className="text-center mb-10 space-y-2">
                 <h1 className="text-3xl font-bold">Luyện Dịch Câu Đơn</h1>
                 <p className="text-muted-foreground">
@@ -113,6 +118,7 @@ export default function SentenceSelectionPage() {
                             id="exclude-mode"
                             checked={excludeLearned}
                             onCheckedChange={setExcludeLearned}
+                            className="cursor-pointer"
                         />
                         <Label
                             htmlFor="exclude-mode"
@@ -127,7 +133,7 @@ export default function SentenceSelectionPage() {
                 <div className="flex justify-end pt-6 border-t">
                     <Button
                         size="lg"
-                        className="px-10"
+                        className="px-10 cursor-pointer"
                         onClick={handleContinue}
                     >
                         Tiếp tục <ChevronRight className="ml-2 w-4 h-4" />

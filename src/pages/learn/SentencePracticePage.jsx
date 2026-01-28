@@ -48,6 +48,11 @@ export default function SentencePracticePage() {
     const [checkSentence, { isLoading: isChecking }] =
         useCheckSentenceMutation();
 
+    // đổi tab title
+    useEffect(() => {
+        document.title = "Luyện dịch câu | EnglishMaster";
+    }, []);
+
     // Load Initial
     useEffect(() => {
         handleNext();
@@ -114,21 +119,20 @@ export default function SentencePracticePage() {
     const isPassed = feedback?.acceptable;
 
     return (
-        <div className="min-h-screen flex flex-col bg-slate-50">
+        <div className="min-h-screen flex flex-col bg-slate-50 mx-auto">
             {/* 1. HEADER THỐNG KÊ */}
-            <header className="bg-white border-b sticky top-0 z-10">
+            <header className="bg-white border-b sticky top-0 z-10 max-w-2xl self-center w-full">
                 <div className="container h-16 flex items-center justify-between">
                     <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => navigate(-1)}
-                        className="text-slate-600"
+                        className="text-slate-600 cursor-pointer"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" /> Thoát
                     </Button>
 
                     {/* Stats header */}
-                    {/* Stats chỉ hiện khi Login */}
                     {isAuthenticated && user && (
                         <div className="flex items-center gap-4 text-sm font-medium">
                             <div className="flex items-center gap-1.5 text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
@@ -143,7 +147,7 @@ export default function SentencePracticePage() {
             </header>
 
             {/* 2. MAIN CONTENT */}
-            <main className="container max-w-2xl py-8 flex-1 flex flex-col justify-center space-y-8">
+            <main className="container max-w-2xl py-4 flex-1 flex flex-col justify-center space-y-4 mx-auto">
                 {/* Câu hỏi */}
                 <div className="space-y-4 text-center">
                     <h2 className="text-sm font-bold text-primary/80 uppercase tracking-widest">
@@ -181,14 +185,14 @@ export default function SentencePracticePage() {
                         <div className="flex gap-3">
                             <Button
                                 variant="secondary"
-                                className="flex-1 h-12 text-base"
+                                className="flex-1 h-12 text-base cursor-pointer"
                                 onClick={handleNext}
                                 disabled={isFetching || isChecking}
                             >
                                 <SkipForward className="w-4 h-4 mr-2" /> Bỏ qua
                             </Button>
                             <Button
-                                className="flex-2 h-12 text-base shadow-lg hover:shadow-xl transition-all"
+                                className="flex-2 h-12 text-base shadow-lg hover:shadow-xl transition-all cursor-pointer"
                                 onClick={handleSubmit}
                                 disabled={isFetching || isChecking}
                             >
@@ -202,7 +206,7 @@ export default function SentencePracticePage() {
                     ) : (
                         <Button
                             size="lg"
-                            className="w-full h-12 text-base bg-green-600 hover:bg-green-700 shadow-lg animate-in zoom-in duration-300"
+                            className="w-full h-12 text-base bg-green-600 hover:bg-green-700 shadow-lg animate-in zoom-in duration-300 cursor-pointer"
                             onClick={handleNext}
                         >
                             Câu tiếp theo{" "}

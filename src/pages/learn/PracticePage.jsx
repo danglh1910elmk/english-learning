@@ -8,8 +8,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
 import { Loader2, ArrowLeft, RotateCcw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function PracticePage() {
+    // đổi tab title
+    useEffect(() => {
+        document.title = "Luyện dịch đoạn văn | EnglishMaster";
+    }, []);
+
     const navigate = useNavigate();
     const {
         paragraph,
@@ -33,20 +39,21 @@ export default function PracticePage() {
             </div>
         );
     }
-    if (!paragraph) return <div>Not Found</div>;
+    if (!paragraph) return <div>Không có dữ liệu</div>;
 
     const progressPercent = Math.round(
         (currentIndex / paragraph.segmentCount) * 100,
     );
 
     return (
-        <div className="min-h-screen bg-slate-50 flex flex-col">
+        <div className="min-h-screen bg-slate-50 flex flex-col mx-auto">
             {/* HEADER */}
-            <header className="bg-white border-b sticky top-0 z-10">
+            <header className="bg-white border-b sticky top-0 z-10 px-4">
                 <div className="container h-16 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         <Button
                             variant="ghost"
+                            className={"cursor-pointer"}
                             size="icon"
                             onClick={() => navigate(-1)}
                         >
@@ -76,13 +83,13 @@ export default function PracticePage() {
             </header>
 
             {/* MAIN CONTENT */}
-            <main className="container py-6 flex-1 grid grid-cols-1 lg:grid-cols-5 gap-6">
-                {/* LEFT COLUMN (Input & Context) */}
+            <main className="container px-4 py-6 flex-1 grid grid-cols-1 lg:grid-cols-5 gap-6 mx-auto">
+                {/* LEFT COLUMN (input & content) */}
                 <div className="lg:col-span-3 space-y-6">
                     <ParagraphContent
                         paragraph={paragraph}
                         currentIndex={currentIndex}
-                        history={progress?.segmentHistory} // Truyền history để xử lý hiển thị
+                        history={progress?.segmentHistory} // truyền history để xử lý hiển thị
                     />
 
                     {!isCompleted ? (
@@ -92,7 +99,7 @@ export default function PracticePage() {
                             </label>
                             <Textarea
                                 placeholder="Nhập bản dịch tiếng Anh cho câu đang được highlight..."
-                                className="min-h-[120px] text-lg resize-none focus-visible:ring-primary"
+                                className="min-h-30 text-lg resize-none focus-visible:ring-primary"
                                 value={studentInput}
                                 onChange={(e) =>
                                     setStudentInput(e.target.value)
@@ -106,7 +113,7 @@ export default function PracticePage() {
                                 <Button
                                     variant="ghost"
                                     size="sm"
-                                    className="text-muted-foreground hover:text-red-500"
+                                    className="text-muted-foreground hover:text-red-500 cursor-pointer"
                                     onClick={handleReset}
                                     disabled={isResetting}
                                 >
@@ -119,11 +126,13 @@ export default function PracticePage() {
                                 <div className="flex gap-2">
                                     <Button
                                         variant="outline"
+                                        className={"cursor-pointer"}
                                         onClick={() => setStudentInput("")}
                                     >
                                         Xóa
                                     </Button>
                                     <Button
+                                        className={"cursor-pointer"}
                                         onClick={handleSubmit}
                                         disabled={isChecking}
                                     >
@@ -138,14 +147,14 @@ export default function PracticePage() {
                     ) : (
                         <div className="p-8 bg-green-50 text-center rounded-xl border border-green-200">
                             <h2 className="text-2xl font-bold text-green-700 mb-2">
-                                🎉 Hoàn thành bài học!
+                                🎉 Bạn đã hoàn thành bài học!
                             </h2>
-                            <p className="text-green-600 mb-6">
-                                Bạn đã làm rất tốt.
-                            </p>
+                            {/* <p className="text-green-600 mb-6">
+                                Bạn đã làm rất tốt
+                            </p> */}
                             <Button
                                 onClick={() =>
-                                    navigate("/learn/paragraph/list")
+                                    navigate("/learn/paragraph/select")
                                 }
                             >
                                 Quay lại danh sách
