@@ -18,7 +18,28 @@ export const authApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["User"],
         }),
+
+        uploadAvatar: builder.mutation({
+            query: (formData) => ({
+                url: "/users/avatar",
+                method: "PATCH",
+                body: formData,
+            }),
+            invalidatesTags: ["User"],
+        }),
+
+        deleteAccount: builder.mutation({
+            query: () => ({
+                url: "/users/me",
+                method: "DELETE",
+            }),
+        }),
     }),
 });
 
-export const { useGetMeQuery, useUpdateProfileMutation } = authApiSlice;
+export const {
+    useGetMeQuery,
+    useUpdateProfileMutation,
+    useUploadAvatarMutation,
+    useDeleteAccountMutation,
+} = authApiSlice;

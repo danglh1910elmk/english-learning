@@ -111,6 +111,16 @@ export default function LeaderboardPage() {
                         ) : leaderboard.length > 0 ? (
                             leaderboard.map((user) => {
                                 const isMe = currentUser?.id === user.id;
+
+                                // lấy chữ cái đầu tên để làm fallback Avatar
+                                const initials = user?.fullName
+                                    ? user.fullName
+                                          .split(" ")
+                                          .map((n) => n[0])
+                                          .join("")
+                                          .toUpperCase()
+                                          .slice(0, 2)
+                                    : "U";
                                 return (
                                     <TableRow
                                         key={user.id}
@@ -139,9 +149,7 @@ export default function LeaderboardPage() {
                                                         src={user.avatar}
                                                     />
                                                     <AvatarFallback>
-                                                        {user.fullName?.charAt(
-                                                            0,
-                                                        ) || "U"}
+                                                        {initials}
                                                     </AvatarFallback>
                                                 </Avatar>
                                                 <div className="flex flex-col">

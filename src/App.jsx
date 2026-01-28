@@ -14,6 +14,7 @@ import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
 import SentenceSelectionPage from "@/pages/learn/SentenceSelectionPage";
 import SentencePracticePage from "@/pages/learn/SentencePracticePage";
 import LeaderboardPage from "@/pages/LeaderboardPage";
+import ProfilePage from "@/pages/ProfilePage";
 
 export default function App() {
     return (
@@ -88,7 +89,7 @@ export default function App() {
                     }
                 >
                     {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
-                    {/* <Route path="/profile" element={<ProfilePage />} /> */}
+                    <Route path="/profile" element={<ProfilePage />} />
                 </Route>
             </Route>
         </Routes>

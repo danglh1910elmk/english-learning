@@ -100,6 +100,12 @@ export const apiSlice = createApi({
             }),
             providesTags: ["User"], // Auto refetch nếu user update điểm
         }),
+
+        // profile
+        getUserRank: builder.query({
+            query: (userId) => `/users/${userId}/rank`,
+            providesTags: ["User"],
+        }),
     }),
 });
 
@@ -112,4 +118,5 @@ export const {
     useLazyGetNextSentenceQuery,
     useCheckSentenceMutation,
     useGetLeaderboardQuery,
+    useGetUserRankQuery,
 } = apiSlice;
