@@ -1,12 +1,3 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
 ## Folder Structure
 
 ```
@@ -29,19 +20,29 @@ english-learning
 │  │  │  ├─ Header.jsx
 │  │  │  └─ MainLayout.jsx
 │  │  ├─ shared
+│  │  │  ├─ ErrorBoundary.jsx
 │  │  │  └─ UserDropdown.jsx
 │  │  └─ ui
+│  │     ├─ alert-dialog.jsx
 │  │     ├─ avatar.jsx
+│  │     ├─ badge.jsx
 │  │     ├─ button.jsx
 │  │     ├─ card.jsx
 │  │     ├─ dropdown-menu.jsx
 │  │     ├─ form.jsx
 │  │     ├─ input.jsx
 │  │     ├─ label.jsx
+│  │     ├─ progress.jsx
+│  │     ├─ select.jsx
 │  │     ├─ sheet.jsx
 │  │     ├─ skeleton.jsx
-│  │     └─ sonner.jsx
+│  │     ├─ sonner.jsx
+│  │     ├─ switch.jsx
+│  │     ├─ table.jsx
+│  │     └─ textarea.jsx
 │  ├─ config
+│  │  ├─ learnOptions.js
+│  │  └─ sentenceOptions.js
 │  ├─ features
 │  │  ├─ api
 │  │  │  └─ apiSlice.js
@@ -53,6 +54,11 @@ english-learning
 │  │  │     ├─ LoginForm.jsx
 │  │  │     └─ RegisterForm.jsx
 │  │  ├─ learn
+│  │  │  ├─ components
+│  │  │  │  ├─ AIFeedback.jsx
+│  │  │  │  └─ ParagraphContent.jsx
+│  │  │  └─ hooks
+│  │  │     └─ usePractice.js
 │  │  └─ user
 │  ├─ hooks
 │  ├─ index.css
@@ -61,9 +67,16 @@ english-learning
 │  │  └─ utils.js
 │  ├─ main.jsx
 │  ├─ pages
-│  │  ├─ DashboardPage.jsx
 │  │  ├─ HomePage.jsx
+│  │  ├─ LeaderboardPage.jsx
+│  │  ├─ learn
+│  │  │  ├─ ParagraphListPage.jsx
+│  │  │  ├─ PracticePage.jsx
+│  │  │  ├─ SelectionPage.jsx
+│  │  │  ├─ SentencePracticePage.jsx
+│  │  │  └─ SentenceSelectionPage.jsx
 │  │  ├─ LoginPage.jsx
+│  │  ├─ ProfilePage.jsx
 │  │  └─ RegisterPage.jsx
 │  ├─ routes
 │  │  └─ ProtectedRoute.jsx
