@@ -2,9 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthLayout from "@/components/layout/AuthLayout";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
-// import DashboardPage from "@/pages/DashboardPage";
 import ProtectedRoute from "@/routes/ProtectedRoute";
-import { Button } from "@/components/ui/button";
 import MainLayout from "@/components/layout/MainLayout";
 import HomePage from "@/pages/HomePage";
 import SelectionPage from "@/pages/learn/SelectionPage";
@@ -37,7 +35,7 @@ export default function App() {
                     element={<SelectionPage />}
                 />
 
-                {/* List bài tập paragraph (dùng Query Params: ?level=...&type=...) */}
+                {/* List bài tập paragraph */}
                 <Route
                     path="/learn/paragraph/list"
                     element={<ParagraphListPage />}
@@ -62,9 +60,8 @@ export default function App() {
                     element={<SentencePracticePage />}
                 />
 
-                {/* Các trang phụ */}
-                {/* <Route path="/pricing" element={<PricingPage />} /> */}
                 <Route path="/leaderboard" element={<LeaderboardPage />} />
+                {/* <Route path="/pricing" element={<PricingPage />} /> */}
             </Route>
 
             {/* --- AUTH ROUTES --- */}
@@ -79,7 +76,7 @@ export default function App() {
                 <Route path="/register" element={<RegisterPage />} />
             </Route>
 
-            {/* --- PRIVATE ROUTES ( Profile...) --- */}
+            {/* --- PRIVATE ROUTES --- */}
             <Route element={<ProtectedRoute />}>
                 <Route
                     element={
@@ -88,7 +85,6 @@ export default function App() {
                         </ErrorBoundary>
                     }
                 >
-                    {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
                     <Route path="/profile" element={<ProfilePage />} />
                 </Route>
             </Route>

@@ -87,11 +87,6 @@ export default function PracticePage() {
                         </div>
                     </div>
                     {/* remaining credits & points */}
-                    {/* <div className="flex items-center gap-3">
-                        <div className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
-                            Score: {progress?.totalScore || 0}
-                        </div>
-                    </div> */}
                     {isAuthenticated && user && (
                         <div className="flex items-center gap-4 text-sm font-medium">
                             <div className="flex items-center gap-1.5 text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
@@ -117,12 +112,12 @@ export default function PracticePage() {
 
                     {!isCompleted ? (
                         <div className="bg-white p-4 rounded-xl border shadow-sm space-y-4">
-                            <label className="text-sm font-medium text-slate-700">
+                            <label className="text-md font-medium text-slate-700">
                                 Bản dịch của bạn:
                             </label>
                             <Textarea
                                 placeholder="Nhập bản dịch tiếng Anh cho câu đang được highlight..."
-                                className="min-h-30 text-lg resize-none focus-visible:ring-primary"
+                                className="min-h-30 text-lg! resize-none focus-visible:ring-primary"
                                 value={studentInput}
                                 onChange={(e) =>
                                     setStudentInput(e.target.value)
@@ -170,15 +165,13 @@ export default function PracticePage() {
                     ) : (
                         <div className="p-8 bg-green-50 text-center rounded-xl border border-green-200">
                             <h2 className="text-2xl font-bold text-green-700 mb-2">
-                                🎉 Bạn đã hoàn thành bài học!
+                                Bạn đã hoàn thành bài học!
                             </h2>
-                            {/* <p className="text-green-600 mb-6">
-                                Bạn đã làm rất tốt
-                            </p> */}
                             <Button
                                 onClick={() =>
                                     navigate("/learn/paragraph/select")
                                 }
+                                className={"cursor-pointer"}
                             >
                                 Quay lại danh sách
                             </Button>

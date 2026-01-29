@@ -20,9 +20,6 @@ export const apiSlice = createApi({
         },
     }),
 
-    // refetchOnFocus: false, // Tắt tự động fetch lại khi quay lại tab trình duyệt
-    // refetchOnReconnect: true, // Tự động fetch lại khi có mạng trở lại
-
     tagTypes: ["User", "Paragraph", "Sentence"],
     endpoints: (builder) => ({
         // Endpoint lấy danh sách bài học
@@ -54,7 +51,7 @@ export const apiSlice = createApi({
                 method: "POST",
                 body: data, // { paragraphId, segmentIndex, studentSentence }
             }),
-            // Sau khi check xong, cần invalidate để fetch lại User info (trừ credit) và Progress mới
+            // sau khi check xong -> invalidate để fetch lại user info (trừ credit) và progress mới
             invalidatesTags: (result, error, { paragraphId }) => [
                 { type: "Paragraph", id: paragraphId },
                 "User",

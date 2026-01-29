@@ -34,7 +34,8 @@ export function RegisterForm() {
 
     async function onSubmit(values) {
         try {
-            // Gọi Supabase SignUp
+            // gọi Supabase SignUp
+            // eslint-disable-next-line no-unused-vars
             const { data, error } = await supabase.auth.signUp({
                 email: values.email,
                 password: values.password,
@@ -113,7 +114,7 @@ export function RegisterForm() {
 
                 <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full cursor-pointer"
                     disabled={form.formState.isSubmitting}
                 >
                     {form.formState.isSubmitting ? "Đang tạo..." : "Đăng ký"}

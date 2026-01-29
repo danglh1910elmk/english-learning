@@ -30,7 +30,7 @@ export function AIFeedback({ feedback }) {
                     )}
                     {isPass ? "Chính xác!" : "Chưa chính xác"}
                     <span className="ml-auto text-sm font-normal text-muted-foreground">
-                        Score: {feedback.score}/100
+                        Điểm: {feedback.score}/100
                     </span>
                 </CardTitle>
             </CardHeader>

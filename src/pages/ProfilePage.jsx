@@ -297,9 +297,6 @@ export default function ProfilePage() {
                                                     <SelectItem value="female">
                                                         Nữ
                                                     </SelectItem>
-                                                    {/* <SelectItem value="other">
-                                                        Khác
-                                                    </SelectItem> */}
                                                 </SelectContent>
                                             </Select>
                                             <FormMessage />

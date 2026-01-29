@@ -61,9 +61,6 @@ export default function LeaderboardPage() {
                 <h1 className="text-3xl md:text-4xl font-bold bg-linear-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent leading-loose block">
                     Bảng Xếp Hạng 🏆
                 </h1>
-                {/* <p className="text-muted-foreground">
-                    Top những học viên xuất sắc nhất
-                </p> */}
             </div>
 
             {/* Table Container */}
@@ -165,11 +162,6 @@ export default function LeaderboardPage() {
                                                             </Badge>
                                                         )}
                                                     </span>
-                                                    {/* <span className="text-xs text-muted-foreground hidden sm:inline-block">
-                                                        {user.points > 1000
-                                                            ? "Expert"
-                                                            : "Learner"}
-                                                    </span> */}
                                                 </div>
                                             </div>
                                         </TableCell>

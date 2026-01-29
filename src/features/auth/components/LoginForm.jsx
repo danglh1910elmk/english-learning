@@ -17,7 +17,7 @@ import {
 import { toast } from "sonner";
 import { useNavigate, Link } from "react-router-dom";
 
-// Schema validate (Copy rule từ Backend sang nếu muốn đồng bộ)
+// Schema validate
 const loginSchema = Joi.object({
     email: Joi.string().email({ tlds: false }).required().label("Email"),
     password: Joi.string().required().label("Password"),
@@ -33,7 +33,8 @@ export function LoginForm() {
 
     async function onSubmit(values) {
         try {
-            // 1. Gọi Supabase Auth
+            // gọi Supabase Auth
+            // eslint-disable-next-line no-unused-vars
             const { data, error } = await supabase.auth.signInWithPassword({
                 email: values.email,
                 password: values.password,
@@ -41,7 +42,7 @@ export function LoginForm() {
 
             if (error) throw error;
 
-            // 2. thành công -> redirect
+            // thành công -> redirect
             toast.success("Đăng nhập thành công!");
             navigate("/");
         } catch (error) {
@@ -87,7 +88,7 @@ export function LoginForm() {
                 />
                 <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full cursor-pointer"
                     disabled={form.formState.isSubmitting}
                 >
                     {form.formState.isSubmitting

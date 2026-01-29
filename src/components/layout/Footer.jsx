@@ -9,13 +9,13 @@ export function Footer() {
                 </p>
                 <div className="flex gap-4 text-sm text-muted-foreground">
                     <a href="#" className="hover:text-primary">
-                        Terms
+                        Điều khoản
                     </a>
                     <a href="#" className="hover:text-primary">
-                        Privacy
+                        Quyền riêng tư
                     </a>
                     <a href="#" className="hover:text-primary">
-                        Contact
+                        Liên hệ
                     </a>
                 </div>
             </div>

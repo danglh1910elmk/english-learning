@@ -105,7 +105,6 @@ export default function SentencePracticePage() {
                 toast.error("Chưa chính xác. Hãy thử lại!");
             }
         } catch (err) {
-            // Xử lý lỗi đặc thù
             if (err.status === 402) {
                 toast.error("Bạn đã hết Credit! Vui lòng nạp thêm để tiếp tục");
                 // navigate('/pricing')
@@ -168,8 +167,8 @@ export default function SentencePracticePage() {
                 {/* Input & Actions */}
                 <div className="space-y-4">
                     <Textarea
-                        placeholder="Type your translation here..."
-                        className="min-h-30 text-lg p-4 resize-none border-2 shadow-sm focus-visible:ring-primary/30"
+                        placeholder="Nhập bản dịch của bạn vào đây..."
+                        className="min-h-30 text-lg! p-4 resize-none border-2 shadow-sm focus-visible:ring-primary/30"
                         value={studentInput}
                         onChange={(e) => setStudentInput(e.target.value)}
                         disabled={isPassed || isFetching} // disable input khi đã làm đúng

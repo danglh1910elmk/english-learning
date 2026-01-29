@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SENTENCE_LEVELS, SENTENCE_CATEGORIES } from "@/config/sentenceOptions";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { ChevronRight, CheckCircle2 } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 export default function SentenceSelectionPage() {
     const navigate = useNavigate();

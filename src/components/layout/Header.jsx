@@ -13,7 +13,6 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, User, LogOut, Trophy, CreditCard } from "lucide-react";
 import { UserDropdown } from "@/components/shared/UserDropdown";
 
 export function Header() {
@@ -35,7 +34,7 @@ export function Header() {
 
                 {/* DESKTOP NAV */}
                 <nav className="hidden md:flex items-center gap-6 ml-auto">
-                    {/* Dropdown Luyện Tập */}
+                    {/* luyện tập */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button

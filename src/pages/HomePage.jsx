@@ -18,7 +18,7 @@ export default function HomePage() {
                 <div className="container px-4 md:px-6 relative z-10">
                     <div className="flex flex-col items-center text-center space-y-8 max-w-3xl mx-auto">
                         <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/10 text-primary hover:bg-primary/20">
-                            New: AI-Powered Feedback 🤖
+                            AI-Powered Feedback 🤖
                         </div>
 
                         {/* Headline */}
@@ -28,7 +28,7 @@ export default function HomePage() {
                         </h1>
 
                         {/* Subtext */}
-                        <p className="text-xl text-muted-foreground max-w-[600px]">
+                        <p className="text-xl text-muted-foreground max-w-150">
                             Luyện dịch Việt - Anh thông minh. Nhận phản hồi sửa
                             lỗi ngữ pháp, từ vựng tức thì từ AI
                         </p>

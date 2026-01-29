@@ -33,9 +33,6 @@ export default function SelectionPage() {
                 <h1 className="text-2xl font-bold tracking-tight md:text-4xl">
                     Chọn cấp độ và loại nội dung muốn luyện tập
                 </h1>
-                {/* <p className="text-muted-foreground text-lg">
-                    Chọn cấp độ và chủ đề bạn muốn rèn luyện hôm nay
-                </p> */}
             </div>
 
             <div className="space-y-12">
@@ -67,7 +64,7 @@ export default function SelectionPage() {
                                 )}
                                 <div
                                     className={cn(
-                                        "inline-flex px-3 py-1 rounded-full text-xs font-medium mb-3",
+                                        "inline-flex px-3 py-1 rounded-full text-sm font-medium mb-3",
                                         item.color,
                                     )}
                                 >

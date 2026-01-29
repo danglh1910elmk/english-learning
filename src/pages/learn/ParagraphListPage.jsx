@@ -1,5 +1,6 @@
 // src/pages/learn/ParagraphListPage.jsx
 
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useGetParagraphsQuery } from "@/features/api/apiSlice";
@@ -21,7 +22,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PlayCircle, Clock, BarChart } from "lucide-react";
+import { PlayCircle, BarChart } from "lucide-react";
 
 export default function ParagraphListPage() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -101,20 +102,6 @@ export default function ParagraphListPage() {
                             ))}
                         </SelectContent>
                     </Select>
-
-                    {/* Status Filter */}
-                    {/* <Select value={status} onValueChange={setStatus}>
-                        <SelectTrigger className="w-[160px]">
-                            <SelectValue placeholder="Trạng thái" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {STATUSES.map((s) => (
-                                <SelectItem key={s.value} value={s.value}>
-                                    {s.label}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select> */}
                 </div>
             </div>
 
@@ -157,12 +144,6 @@ export default function ParagraphListPage() {
                                         <BarChart className="w-3 h-3" />{" "}
                                         {item.segmentCount} câu
                                     </div>
-                                    {/* {item.userScore > 0 && (
-                                        <div className="flex items-center gap-1 text-primary">
-                                            <Clock className="w-3 h-3" /> Điểm:{" "}
-                                            {item.userScore}
-                                        </div>
-                                    )} */}
                                 </div>
                             </CardContent>
 

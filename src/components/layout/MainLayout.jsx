@@ -9,7 +9,6 @@ export default function MainLayout() {
         <div className="min-h-screen flex flex-col font-sans text-slate-900">
             <Header />
 
-            {/* Main Content Area */}
             <main className="flex-1">
                 <Outlet />
             </main>

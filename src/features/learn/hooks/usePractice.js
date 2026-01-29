@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 import {
     useGetParagraphDetailQuery,
     useCheckTranslationMutation,
@@ -12,7 +11,6 @@ import { toast } from "sonner";
 
 export function usePractice() {
     const { id } = useParams();
-    // const navigate = useNavigate();
 
     const [studentInput, setStudentInput] = useState("");
     const [feedback, setFeedback] = useState(null);
@@ -33,7 +31,6 @@ export function usePractice() {
     // khi chuyển câu mới -> chỉ reset input, GIỮ NGUYÊN FEEDBACK câu cũ để user đọc
     useEffect(() => {
         setStudentInput("");
-        // setFeedback(null) // giữ lại feedback khi chuyển câu
     }, [currentIndex]);
 
     const handleSubmit = async () => {

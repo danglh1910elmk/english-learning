@@ -6,7 +6,7 @@ export function ParagraphContent({ paragraph, currentIndex, history = [] }) {
     if (!paragraph) return null;
 
     return (
-        <div className="bg-white rounded-xl border p-6 shadow-sm min-h-[300px] text-lg leading-relaxed">
+        <div className="bg-white rounded-xl border p-6 shadow-sm min-h-75 text-lg leading-relaxed">
             {paragraph?.segments?.map((originalSegment, index) => {
                 const isCurrent = index === currentIndex;
 

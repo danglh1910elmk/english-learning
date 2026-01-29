@@ -13,7 +13,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { LogOut, User, LayoutDashboard, Settings } from "lucide-react";
+import { LogOut, User } from "lucide-react";
 
 export function UserDropdown({ user }) {
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export function UserDropdown({ user }) {
         navigate("/login");
     };
 
-    // Lấy chữ cái đầu tên để làm Fallback Avatar
+    // lấy chữ cái đầu tên để làm fallback avatar
     const initials = user?.fullName
         ? user.fullName
               .split(" ")
@@ -59,19 +59,12 @@ export function UserDropdown({ user }) {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
 
-                {/* Info Credits (Optional: hiển thị nhanh số dư) */}
+                {/* remaining credits */}
                 <div className="px-2 py-1.5 text-sm text-blue-600 font-medium bg-blue-50/50 rounded-sm mb-1">
                     💎 {user?.credits || 0} Credits
                 </div>
 
                 <DropdownMenuSeparator />
-
-                {/* <DropdownMenuItem asChild>
-                    <Link to="/dashboard" className="cursor-pointer">
-                        <LayoutDashboard className="mr-2 h-4 w-4" />
-                        <span>Dashboard</span>
-                    </Link>
-                </DropdownMenuItem> */}
 
                 <DropdownMenuItem asChild>
                     <Link to="/profile" className="cursor-pointer">
