@@ -85,6 +85,7 @@ export function RegisterForm() {
                             <FormControl>
                                 <Input
                                     placeholder="example@gmail.com"
+                                    autocomplete="off"
                                     {...field}
                                 />
                             </FormControl>

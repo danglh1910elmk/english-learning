@@ -62,6 +62,7 @@ export function LoginForm() {
                             <FormControl>
                                 <Input
                                     placeholder="example@gmail.com"
+                                    autocomplete="off"
                                     {...field}
                                 />
                             </FormControl>
